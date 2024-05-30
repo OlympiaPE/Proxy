@@ -1,0 +1,71 @@
+package dev.olympia;
+
+import dev.olympia.commands.global.BroadcastCommand;
+import dev.olympia.commands.global.OnlineCommand;
+import dev.olympia.commands.global.VisionCommand;
+import dev.olympia.commands.staff.punishment.BanCommand;
+import dev.olympia.commands.staff.punishment.LatencyCommand;
+import dev.olympia.events.packets.PacketReceiveEvent;
+import dev.olympia.events.packets.PacketSendEvent;
+import dev.olympia.listeners.EventListener;
+import dev.olympia.listeners.PacketListener;
+import dev.olympia.session.SessionManager;
+import dev.olympia.utils.protocol.ProtocolUpdater;
+import dev.olympia.utils.protocol.commands.BaseCommand;
+import dev.waterdog.waterdogpe.event.defaults.PlayerDisconnectedEvent;
+import dev.waterdog.waterdogpe.event.defaults.PlayerLoginEvent;
+import dev.waterdog.waterdogpe.network.protocol.ProtocolCodecs;
+import dev.waterdog.waterdogpe.plugin.Plugin;
+
+public class  Loader extends Plugin {
+    protected static Loader instance;
+    protected ProtocolUpdater updater = new ProtocolUpdater();
+
+    public static Loader getInstance()
+    {
+        return instance;
+    }
+
+    public static void setInstance(Loader loader)
+    {
+        instance = loader;
+    }
+
+    @Override
+    public void onEnable() {
+        setInstance(this);
+
+        ProtocolCodecs.addUpdater(updater);
+
+        new SessionManager();
+        this.loadListeners();
+        this.loadCommands();
+    }
+
+    public void loadListeners()
+    {
+        getProxy().getEventManager().subscribe(PlayerLoginEvent.class, EventListener::onLogin);
+        getProxy().getEventManager().subscribe(PlayerDisconnectedEvent.class, EventListener::onDisconnect);
+
+        getProxy().getEventManager().subscribe(PacketReceiveEvent.class, PacketListener::onPacketReceive);
+        getProxy().getEventManager().subscribe(PacketSendEvent.class, PacketListener::onPacketSend);
+    }
+
+    public void loadCommands()
+    {
+        // Global commands
+        registerCommand(new LatencyCommand());
+        registerCommand(new OnlineCommand());
+        registerCommand(new VisionCommand());
+
+        // Staff Commands
+        registerCommand(new BroadcastCommand());
+
+        registerCommand(new BanCommand());
+    }
+
+    public void registerCommand(BaseCommand command)
+    {
+        getProxy().getCommandMap().registerCommand(command);
+    }
+}

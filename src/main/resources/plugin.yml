@@ -1,0 +1,4 @@
+name: OlympiaProxy
+version: 1.2.2
+main: dev.olympia.Loader
+author: Zwuiix
