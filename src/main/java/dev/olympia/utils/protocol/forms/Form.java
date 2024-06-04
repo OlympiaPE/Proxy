@@ -16,6 +16,7 @@ public class Form {
 
     protected int id;
     protected Runnable callable = null;
+    protected Runnable closeCallable = null;
 
     Form(int id)
     {
@@ -38,6 +39,13 @@ public class Form {
         this.callable = callable;
     }
 
+    public Runnable getCloseCallable() {
+        return closeCallable;
+    }
+    public void setCloseCallable(Runnable callable) {
+        this.closeCallable = callable;
+    }
+
     public Object getResponse() {
         return response;
     }
@@ -50,6 +58,12 @@ public class Form {
             if(callable != null) callable.run();
             Form.forms.remove(player.getName());
         }
+    }
+
+    public void close(ProxiedPlayer player)
+    {
+        if(closeCallable != null) closeCallable.run();
+        Form.forms.remove(player.getName());
     }
 
     public void send(ProxiedPlayer player)

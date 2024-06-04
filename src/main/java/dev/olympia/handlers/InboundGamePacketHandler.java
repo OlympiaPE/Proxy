@@ -25,7 +25,7 @@ public class InboundGamePacketHandler {
         if(form != null && packet.getFormId() == form.getId()) {
             if(packet.getCancelReason().isEmpty()) {
                 form.handleResponse(session.getPlayer(), packet.getFormData());
-            }
+            } else form.close(session.getPlayer());
             return false;
         }
 
