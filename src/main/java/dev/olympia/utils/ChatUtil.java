@@ -65,7 +65,7 @@ public class ChatUtil {
         for(var server : ProxyServer.getInstance().getServers()) {
             server.getPlayers().forEach((p) -> {
                 if(p.isConnected())
-                    p.sendTitle("§a", message);
+                    p.sendTitle("§a", message, 10, 10, 10);
             });
         }
         ProxyServer.getInstance().getLogger().info(TextFormat.clean(str, true));

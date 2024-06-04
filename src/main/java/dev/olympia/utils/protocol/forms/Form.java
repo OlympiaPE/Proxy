@@ -2,6 +2,7 @@ package dev.olympia.utils.protocol.forms;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import dev.olympia.session.PlayerSession;
 import dev.waterdog.waterdogpe.player.ProxiedPlayer;
 import org.cloudburstmc.protocol.bedrock.packet.ModalFormRequestPacket;
 
@@ -58,6 +59,11 @@ public class Form {
         packet.setFormId(getId());
         packet.setFormData(serialize());
         player.sendPacket(packet);
+    }
+
+    public void send(PlayerSession session)
+    {
+        this.send(session.getPlayer());
     }
 
     public Object processData(Object data) { return true; }
