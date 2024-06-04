@@ -4,6 +4,8 @@ import dev.olympia.commands.global.BroadcastCommand;
 import dev.olympia.commands.global.OnlineCommand;
 import dev.olympia.commands.global.VisionCommand;
 import dev.olympia.commands.global.servers.*;
+import dev.olympia.commands.staff.freeze.FreezeCommand;
+import dev.olympia.commands.staff.freeze.UnFreezeCommand;
 import dev.olympia.commands.staff.punishment.BanCommand;
 import dev.olympia.commands.staff.punishment.LatencyCommand;
 import dev.olympia.events.packets.PacketReceiveEvent;
@@ -73,6 +75,8 @@ public class  Loader extends Plugin {
 
         // Staff Commands
         registerCommand(new BroadcastCommand());
+        registerCommand(new FreezeCommand());
+        registerCommand(new UnFreezeCommand());
 
         registerCommand(new BanCommand());
     }

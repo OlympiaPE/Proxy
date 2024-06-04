@@ -8,6 +8,7 @@ import dev.olympia.utils.protocol.handler.PacketHandler;
 import dev.waterdog.waterdogpe.player.ProxiedPlayer;
 import org.cloudburstmc.math.vector.Vector3f;
 import org.cloudburstmc.protocol.bedrock.packet.MobEffectPacket;
+import org.cloudburstmc.protocol.bedrock.packet.MovePlayerPacket;
 import org.cloudburstmc.protocol.bedrock.packet.PlaySoundPacket;
 
 import java.util.LinkedHashMap;
@@ -16,10 +17,13 @@ public class PlayerSession {
     protected ProxiedPlayer player;
     protected long entityId = 0;
     protected Vector3f position;
+    protected Vector3f rotation;
+    protected boolean immobile = false;
     protected LinkedHashMap<Integer, Effect> effects = new LinkedHashMap<>();
 
     protected InboundGamePacketHandler inboundGamePacketHandler;
     protected OutboundGamePacketHandler outboundGamePacketHandler;
+
     public PlayerSession(ProxiedPlayer player)
     {
         this.player = player;
@@ -49,6 +53,15 @@ public class PlayerSession {
 
     public void setPosition(Vector3f position) {
         this.position = position;
+    }
+
+
+    public Vector3f getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(Vector3f rotation) {
+        this.rotation = rotation;
     }
 
     public LinkedHashMap<Integer, Effect> getEffects() {
@@ -113,5 +126,23 @@ public class PlayerSession {
     public void addSound(String sound, float volume, float pitch)
     {
         addSound(sound, getPosition(), volume, pitch);
+    }
+
+    public boolean isImmobile() {
+        return immobile;
+    }
+
+    public void setImmobile(boolean value) {
+        this.immobile = value;
+    }
+
+    public void teleport(Vector3f position) {
+        MovePlayerPacket packet = new MovePlayerPacket();
+        packet.setPosition(position);
+        packet.setRuntimeEntityId(getEntityId());
+        packet.setRotation(getRotation());
+        packet.setMode(MovePlayerPacket.Mode.TELEPORT);
+        packet.setTeleportationCause(MovePlayerPacket.TeleportationCause.UNKNOWN);
+        getPlayer().sendPacket(packet);
     }
 }

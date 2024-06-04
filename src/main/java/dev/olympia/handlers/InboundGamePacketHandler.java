@@ -34,7 +34,14 @@ public class InboundGamePacketHandler {
 
     public boolean handle(PlayerAuthInputPacket packet)
     {
-        session.setPosition(packet.getPosition());
+        if(!session.isImmobile()) {
+            session.setPosition(packet.getPosition());
+        } else if(session.getPosition().distance(packet.getPosition()) > 0.3) {
+            packet.setPosition(session.getPosition());
+            session.teleport(session.getPosition());
+        }
+
+        session.setRotation(packet.getRotation());
         return true;
     }
 
