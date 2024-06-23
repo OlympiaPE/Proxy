@@ -3,6 +3,7 @@ package dev.olympia.task;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dev.olympia.Loader;
+import dev.olympia.utils.ChatUtil;
 import dev.olympia.utils.constants.GlobalConstants;
 import dev.waterdog.waterdogpe.ProxyServer;
 import dev.waterdog.waterdogpe.network.serverinfo.ServerInfo;
@@ -97,6 +98,8 @@ public class VoteAsyncTask extends Task {
                     for (ServerInfo serverInfo : ProxyServer.getInstance().getServers()) {
                         data.setBoolean(player.getName().toLowerCase() + "." + serverInfo.getServerName().toLowerCase(), true);
                     }
+
+                    ChatUtil.broadcastMessage("§e" + player.getName() + "§f vient de voté pour le serveur, faite comme lui en votant pour le serveur avec ce lien : §eolympiape.fr/vote§a.");
                 }
                 default -> player.sendMessage(GlobalConstants.PREFIX + "§cVous avez déjà voté pour le serveur !");
             }
