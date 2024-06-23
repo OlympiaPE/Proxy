@@ -26,6 +26,7 @@ import java.io.File;
 public class  Loader extends Plugin {
     protected static Loader instance;
     protected JsonConfig vote;
+    protected JsonConfig settings;
     protected ProtocolUpdater updater = new ProtocolUpdater();
 
     public static Loader getInstance()
@@ -43,11 +44,16 @@ public class  Loader extends Plugin {
         return this.vote;
     }
 
+    public JsonConfig getSettings() {
+        return settings;
+    }
+
     @Override
     public void onEnable() {
         setInstance(this);
 
         this.vote = new JsonConfig(new File(this.getDataFolder(), "vote.json"));
+        this.settings = new JsonConfig(new File(this.getDataFolder(), "settings.json"));
 
         ProtocolCodecs.addUpdater(updater);
 
@@ -59,6 +65,7 @@ public class  Loader extends Plugin {
     @Override
     public void onDisable() {
         this.vote.save();
+        this.settings.save();
     }
 
     public void loadListeners()
@@ -78,6 +85,7 @@ public class  Loader extends Plugin {
         registerCommand(new LatencyCommand());
         registerCommand(new OnlineCommand());
         registerCommand(new VisionCommand());
+        registerCommand(new SettingsCommand());
 
         registerCommand(new LinkCommand());
         registerCommand(new VoteCommand());
