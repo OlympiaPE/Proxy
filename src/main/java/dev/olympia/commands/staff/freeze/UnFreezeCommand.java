@@ -6,7 +6,6 @@ import dev.olympia.utils.constants.GlobalConstants;
 import dev.olympia.utils.constants.Permissions;
 import dev.olympia.utils.protocol.commands.BaseCommand;
 import dev.olympia.utils.protocol.commands.arguments.TargetArgument;
-import dev.olympia.utils.protocol.forms.SimpleForm;
 import dev.waterdog.waterdogpe.ProxyServer;
 import dev.waterdog.waterdogpe.command.CommandSender;
 import dev.waterdog.waterdogpe.command.CommandSettings;

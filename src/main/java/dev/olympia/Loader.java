@@ -19,9 +19,7 @@ import dev.waterdog.waterdogpe.event.defaults.PlayerLoginEvent;
 import dev.waterdog.waterdogpe.event.defaults.ServerTransferEvent;
 import dev.waterdog.waterdogpe.network.protocol.ProtocolCodecs;
 import dev.waterdog.waterdogpe.plugin.Plugin;
-import dev.waterdog.waterdogpe.utils.config.Configuration;
 import dev.waterdog.waterdogpe.utils.config.JsonConfig;
-import dev.waterdog.waterdogpe.utils.config.YamlConfig;
 
 import java.io.File;
 

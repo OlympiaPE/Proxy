@@ -5,13 +5,7 @@ import dev.olympia.session.types.Effect;
 import dev.olympia.session.types.EffectIds;
 import dev.olympia.utils.constants.GlobalConstants;
 import dev.olympia.utils.protocol.commands.BaseCommand;
-import dev.olympia.utils.protocol.commands.arguments.EnumArgument;
-import dev.waterdog.waterdogpe.ProxyServer;
-import dev.waterdog.waterdogpe.command.CommandSender;
 import dev.waterdog.waterdogpe.command.CommandSettings;
-import dev.waterdog.waterdogpe.network.serverinfo.ServerInfo;
-
-import java.util.ArrayList;
 
 public class VisionCommand extends BaseCommand {
     public VisionCommand() {

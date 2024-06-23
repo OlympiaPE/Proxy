@@ -2,20 +2,14 @@ package dev.olympia.task;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import dev.olympia.session.PlayerSession;
-import dev.olympia.session.SessionManager;
 import dev.olympia.utils.constants.GlobalConstants;
 import dev.waterdog.waterdogpe.ProxyServer;
 import dev.waterdog.waterdogpe.player.ProxiedPlayer;
 import dev.waterdog.waterdogpe.scheduler.Task;
-import lombok.SneakyThrows;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 
 public class LinkAsyncTask extends Task {

@@ -3,7 +3,7 @@ package dev.olympia.utils.protocol;
 import dev.waterdog.waterdogpe.network.protocol.updaters.ProtocolCodecUpdater;
 import org.cloudburstmc.protocol.bedrock.codec.BedrockCodec;
 import org.cloudburstmc.protocol.bedrock.codec.BedrockPacketDefinition;
-import org.cloudburstmc.protocol.bedrock.packet.*;
+import org.cloudburstmc.protocol.bedrock.packet.PlaySoundPacket;
 
 public class ProtocolUpdater implements ProtocolCodecUpdater {
     @Override

@@ -2,7 +2,10 @@ package dev.olympia.handlers;
 
 import dev.olympia.session.PlayerSession;
 import dev.olympia.utils.protocol.forms.Form;
-import org.cloudburstmc.protocol.bedrock.packet.*;
+import org.cloudburstmc.protocol.bedrock.packet.BedrockPacket;
+import org.cloudburstmc.protocol.bedrock.packet.ModalFormResponsePacket;
+import org.cloudburstmc.protocol.bedrock.packet.PlayerAuthInputPacket;
+import org.cloudburstmc.protocol.bedrock.packet.SetLocalPlayerAsInitializedPacket;
 
 public class InboundGamePacketHandler {
     protected PlayerSession session;

@@ -2,8 +2,6 @@ package dev.olympia.listeners;
 
 import dev.olympia.session.PlayerSession;
 import dev.olympia.session.SessionManager;
-import dev.waterdog.waterdogpe.event.defaults.PlayerDisconnectedEvent;
-import dev.waterdog.waterdogpe.event.defaults.PlayerLoginEvent;
 import dev.waterdog.waterdogpe.event.defaults.ServerTransferEvent;
 
 public class SessionListener {
