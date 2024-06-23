@@ -19,7 +19,6 @@ public class LinkCommand extends BaseCommand {
     public LinkCommand() {
         super("link", CommandSettings.builder()
                 .setDescription("Liée sont compte à discord")
-                .setAliases("say")
                 .build());
     }
 

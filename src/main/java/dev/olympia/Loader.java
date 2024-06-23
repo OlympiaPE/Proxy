@@ -1,9 +1,6 @@
 package dev.olympia;
 
-import dev.olympia.commands.global.BroadcastCommand;
-import dev.olympia.commands.global.LinkCommand;
-import dev.olympia.commands.global.OnlineCommand;
-import dev.olympia.commands.global.VisionCommand;
+import dev.olympia.commands.global.*;
 import dev.olympia.commands.global.servers.*;
 import dev.olympia.commands.staff.freeze.FreezeCommand;
 import dev.olympia.commands.staff.freeze.UnFreezeCommand;
@@ -22,9 +19,15 @@ import dev.waterdog.waterdogpe.event.defaults.PlayerLoginEvent;
 import dev.waterdog.waterdogpe.event.defaults.ServerTransferEvent;
 import dev.waterdog.waterdogpe.network.protocol.ProtocolCodecs;
 import dev.waterdog.waterdogpe.plugin.Plugin;
+import dev.waterdog.waterdogpe.utils.config.Configuration;
+import dev.waterdog.waterdogpe.utils.config.JsonConfig;
+import dev.waterdog.waterdogpe.utils.config.YamlConfig;
+
+import java.io.File;
 
 public class  Loader extends Plugin {
     protected static Loader instance;
+    protected JsonConfig vote;
     protected ProtocolUpdater updater = new ProtocolUpdater();
 
     public static Loader getInstance()
@@ -37,15 +40,27 @@ public class  Loader extends Plugin {
         instance = loader;
     }
 
+    public JsonConfig getVoteData()
+    {
+        return this.vote;
+    }
+
     @Override
     public void onEnable() {
         setInstance(this);
+
+        this.vote = new JsonConfig(new File(this.getDataFolder(), "vote.json"));
 
         ProtocolCodecs.addUpdater(updater);
 
         new SessionManager();
         this.loadListeners();
         this.loadCommands();
+    }
+
+    @Override
+    public void onDisable() {
+        this.vote.save();
     }
 
     public void loadListeners()
@@ -67,6 +82,7 @@ public class  Loader extends Plugin {
         registerCommand(new VisionCommand());
 
         registerCommand(new LinkCommand());
+        registerCommand(new VoteCommand());
 
          // Servers
         registerCommand(new BuildCommand());

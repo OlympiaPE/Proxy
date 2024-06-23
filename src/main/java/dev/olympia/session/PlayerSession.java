@@ -10,6 +10,7 @@ import org.cloudburstmc.math.vector.Vector3f;
 import org.cloudburstmc.protocol.bedrock.packet.MobEffectPacket;
 import org.cloudburstmc.protocol.bedrock.packet.MovePlayerPacket;
 import org.cloudburstmc.protocol.bedrock.packet.PlaySoundPacket;
+import org.cloudburstmc.protocol.bedrock.packet.ScriptMessagePacket;
 
 import java.util.LinkedHashMap;
 
@@ -144,5 +145,13 @@ public class PlayerSession {
         packet.setMode(MovePlayerPacket.Mode.TELEPORT);
         packet.setTeleportationCause(MovePlayerPacket.TeleportationCause.UNKNOWN);
         getPlayer().sendPacket(packet);
+    }
+
+    public void sendToServer(String packetName, String content)
+    {
+        ScriptMessagePacket messagePacket = new ScriptMessagePacket();
+        messagePacket.setChannel(packetName.toUpperCase());
+        messagePacket.setMessage(content);
+        getPlayer().getDownstreamConnection().sendPacket(messagePacket);
     }
 }
