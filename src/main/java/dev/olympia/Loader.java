@@ -1,6 +1,7 @@
 package dev.olympia;
 
 import dev.olympia.commands.global.BroadcastCommand;
+import dev.olympia.commands.global.LinkCommand;
 import dev.olympia.commands.global.OnlineCommand;
 import dev.olympia.commands.global.VisionCommand;
 import dev.olympia.commands.global.servers.*;
@@ -64,6 +65,8 @@ public class  Loader extends Plugin {
         registerCommand(new LatencyCommand());
         registerCommand(new OnlineCommand());
         registerCommand(new VisionCommand());
+
+        registerCommand(new LinkCommand());
 
          // Servers
         registerCommand(new BuildCommand());
