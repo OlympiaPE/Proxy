@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dev.olympia.session.PlayerSession;
 import dev.olympia.session.SessionManager;
+import dev.olympia.utils.constants.GlobalConstants;
 import dev.waterdog.waterdogpe.ProxyServer;
 import dev.waterdog.waterdogpe.player.ProxiedPlayer;
 import dev.waterdog.waterdogpe.scheduler.Task;
@@ -59,7 +60,7 @@ public class LinkAsyncTask extends Task {
             ProxyServer.getInstance().getScheduler().scheduleTask(() -> {
                 ProxiedPlayer player = ProxyServer.getInstance().getPlayer(this.username);
                 if (player != null) {
-                    player.sendMessage("§6» §fErreur lors de la liaison de votre compte. Veuillez réessayer plus tard ou contacter un membre de l'équipe du staff.");
+                    player.sendMessage(GlobalConstants.PREFIX + "§cErreur lors de la liaison de votre compte. Veuillez réessayer plus tard ou contacter un membre de l'équipe du staff.");
                 }
             }, false);
         } finally {
@@ -79,16 +80,16 @@ public class LinkAsyncTask extends Task {
             if (player == null) return;
 
             switch (statusCode) {
-                case 404 -> player.sendMessage("§6» §fPour relier votre compte discord vous devez d'abord éxécuter la commande §6/link " + username + " §fsur le discord. §6discord.gg/olympiape");
-                case 409 -> player.sendMessage("§6» §fCe compte est déjà relié à un compte discord.");
-                case 429 -> player.sendMessage("§6» §fVous avez atteint votre nombre d'essais maximum. Veuillez réexécuter la commande §6/link " + username + " §fsur le discord. §6discord.gg/olympiape");
+                case 404 -> player.sendMessage(GlobalConstants.PREFIX + "Pour relier votre compte discord vous devez d'abord éxécuter la commande §6/link " + username + " §fsur le discord. §6discord.gg/olympiape");
+                case 409 -> player.sendMessage(GlobalConstants.PREFIX + "§cCe compte est déjà relié à un compte discord.");
+                case 429 -> player.sendMessage(GlobalConstants.PREFIX + "§cVous avez atteint votre nombre d'essais maximum. Veuillez réexécuter la commande §6/link " + username + " §csur le discord. §6discord.gg/olympiape");
                 case 400 -> {
                     int remainingTests = response != null ? response.get("remainingTests").getAsInt() : 0;
-                    player.sendMessage("§6» §fCode incorrecte, il vous reste " + remainingTests + " essai(s).");
+                    player.sendMessage(GlobalConstants.PREFIX + "§cCode incorrecte, il vous reste §e" + remainingTests + " essai(s)§c.");
                 }
-                case 408 -> player.sendMessage("§6» §fLe délai maximum a été atteint. Veuillez réexécuter la commande §6/link " + username + " §fsur le discord. §6discord.gg/olympiape");
-                case 202 -> player.sendMessage("§6» §fCompte relié avec succès !");
-                default -> player.sendMessage("§6» §fErreur, veuillez réessayer plus tard ou contacter un membre de l'équipe du staff.");
+                case 408 -> player.sendMessage(GlobalConstants.PREFIX + "§cLe délai maximum a été atteint. Veuillez réexécuter la commande §6/link " + username + " §csur le discord. §6discord.gg/olympiape");
+                case 202 -> player.sendMessage(GlobalConstants.PREFIX + "§aCompte relié avec succès !");
+                default -> player.sendMessage(GlobalConstants.PREFIX + "§cErreur, veuillez réessayer plus tard ou contacter un membre de l'équipe du staff.");
             }
         }, false);
     }
