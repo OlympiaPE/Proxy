@@ -5,7 +5,6 @@ import dev.olympia.commands.global.servers.*;
 import dev.olympia.commands.staff.freeze.FreezeCommand;
 import dev.olympia.commands.staff.freeze.UnFreezeCommand;
 import dev.olympia.commands.staff.punishment.BanCommand;
-import dev.olympia.commands.staff.punishment.LatencyCommand;
 import dev.olympia.events.packets.PacketReceiveEvent;
 import dev.olympia.events.packets.PacketSendEvent;
 import dev.olympia.listeners.EventListener;
@@ -20,32 +19,23 @@ import dev.waterdog.waterdogpe.event.defaults.ServerTransferEvent;
 import dev.waterdog.waterdogpe.network.protocol.ProtocolCodecs;
 import dev.waterdog.waterdogpe.plugin.Plugin;
 import dev.waterdog.waterdogpe.utils.config.JsonConfig;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.File;
 
 public class  Loader extends Plugin {
+    @Getter
+    @Setter
     protected static Loader instance;
     protected JsonConfig vote;
+    @Getter
     protected JsonConfig settings;
     protected ProtocolUpdater updater = new ProtocolUpdater();
-
-    public static Loader getInstance()
-    {
-        return instance;
-    }
-
-    public static void setInstance(Loader loader)
-    {
-        instance = loader;
-    }
 
     public JsonConfig getVoteData()
     {
         return this.vote;
-    }
-
-    public JsonConfig getSettings() {
-        return settings;
     }
 
     @Override
@@ -85,7 +75,7 @@ public class  Loader extends Plugin {
         registerCommand(new LatencyCommand());
         registerCommand(new OnlineCommand());
         registerCommand(new VisionCommand());
-        registerCommand(new SettingsCommand());
+        //registerCommand(new SettingsCommand());
 
         registerCommand(new LinkCommand());
         registerCommand(new VoteCommand());
@@ -103,7 +93,7 @@ public class  Loader extends Plugin {
         registerCommand(new FreezeCommand());
         registerCommand(new UnFreezeCommand());
 
-        registerCommand(new BanCommand());
+        //registerCommand(new BanCommand());
     }
 
     public void registerCommand(BaseCommand command)

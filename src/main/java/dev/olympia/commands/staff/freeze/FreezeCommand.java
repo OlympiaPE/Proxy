@@ -35,14 +35,15 @@ public class FreezeCommand extends BaseCommand {
 
         PlayerSession session = SessionManager.getInstance().getSession(target);
         session.setImmobile(true);
-        SimpleForm form = new SimpleForm(1001);
+        target.sendMessage("Vous avez été freeze par " + commandSender.getName() + ", veuillez vous rendre sur notre serveur discord!");
+        /*SimpleForm form = new SimpleForm(1001);
         form.setTitle("Vous êtes freeze");
         form.setContent("Vous avez été freeze par " + commandSender.getName() + ", veuillez vous rendre sur notre serveur discord!");
         form.setCloseCallable(() -> {
             if(session.isImmobile())
                 form.send(session);
         });
-        form.send(session);
+        form.send(session);*/
         commandSender.sendMessage(GlobalConstants.PREFIX + "§aVous avez bien rendu immobile §e" + target.getName() + "§a.");
     }
 }

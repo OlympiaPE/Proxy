@@ -1,4 +1,4 @@
-package dev.olympia.commands.staff.punishment;
+package dev.olympia.commands.global;
 
 import dev.olympia.session.PlayerSession;
 import dev.olympia.utils.constants.GlobalConstants;
