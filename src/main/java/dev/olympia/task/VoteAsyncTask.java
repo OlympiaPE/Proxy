@@ -11,6 +11,7 @@ import dev.waterdog.waterdogpe.utils.config.JsonConfig;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -49,8 +50,20 @@ public class VoteAsyncTask extends Task {
                     try {
                         URL claimUrl = new URL(claimUrlStr);
                         claimConnection = (HttpURLConnection) claimUrl.openConnection();
-                        claimConnection.setRequestMethod("GET");
+                        claimConnection.setRequestMethod("POST");
                         claimConnection.setRequestProperty("Accept", "application/json");
+                        claimConnection.setDoOutput(true);
+
+                        // Write body content if needed
+                        try (OutputStream os = claimConnection.getOutputStream()) {
+                            byte[] input = "".getBytes("utf-8");
+                            os.write(input, 0, input.length);
+                        }
+
+                        int claimStatusCode = claimConnection.getResponseCode();
+                        if (claimStatusCode != HttpURLConnection.HTTP_OK) {
+                            handleResponse("0");
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     } finally {
