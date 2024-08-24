@@ -110,7 +110,7 @@ public class VoteAsyncTask extends Task {
                         data.setBoolean(player.getName().toLowerCase() + "." + serverInfo.getServerName().toLowerCase(), true);
                     }
 
-                    ChatUtil.broadcastMessage("§e" + player.getName() + "§f vient de voté pour le serveur, faite comme lui en votant pour le serveur avec ce lien : §eolympiape.fr/vote§a.");
+                    ChatUtil.broadcastMessage("§e" + player.getName() + "§f vient de voter pour le serveur, faite comme lui en votant pour le serveur avec ce lien : §eolympiape.fr/vote§a.");
                 }
                 default -> player.sendMessage(GlobalConstants.PREFIX + "§cVous avez déjà voté pour le serveur !");
             }
