@@ -8,7 +8,7 @@ public class SessionListener {
     public static void onTransfer(ServerTransferEvent event)
     {
         PlayerSession session = SessionManager.getInstance().getSession(event.getPlayer());
-        event.getTargetServer().getPlayers().forEach(player -> player.sendMessage("§f[§a+§f] §a" + session.getPlayer().getName()));
-        event.getSourceServer().getPlayers().forEach(player -> player.sendMessage("§f[§c-§f] §c" + session.getPlayer().getName()));
+        event.getTargetServer().getPlayers().forEach(player -> player.sendTip("§f[§a+§f] §a" + session.getPlayer().getName()));
+        event.getSourceServer().getPlayers().forEach(player -> player.sendTip("§f[§c-§f] §c" + session.getPlayer().getName()));
     }
 }
