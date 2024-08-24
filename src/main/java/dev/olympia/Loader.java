@@ -30,6 +30,8 @@ public class  Loader extends Plugin {
     protected static Loader instance;
     protected JsonConfig vote;
     @Getter
+    protected JsonConfig nightVision;
+    @Getter
     protected JsonConfig settings;
     protected ProtocolUpdater updater = new ProtocolUpdater();
 
@@ -44,6 +46,7 @@ public class  Loader extends Plugin {
 
         this.vote = new JsonConfig(new File(this.getDataFolder(), "vote.json"));
         this.settings = new JsonConfig(new File(this.getDataFolder(), "settings.json"));
+        this.nightVision = new JsonConfig(new File(this.getDataFolder(), "night_vision.json"));
 
         ProtocolCodecs.addUpdater(updater);
 

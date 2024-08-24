@@ -51,6 +51,7 @@ public class InboundGamePacketHandler {
     public boolean handle(SetLocalPlayerAsInitializedPacket packet)
     {
         session.setEntityId(packet.getRuntimeEntityId());
+        session.onSpawn();
         return true;
     }
 }
