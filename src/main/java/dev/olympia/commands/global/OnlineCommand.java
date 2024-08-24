@@ -39,7 +39,7 @@ public class OnlineCommand extends BaseCommand {
             String[] content = new String[players.size()];
             content = players.toArray(content);
 
-            commandSender.sendMessage(GlobalConstants.PREFIX + "§aVoici la liste des joueurs connectés sur tout le réseaux §e(" + players.size() + ")§a:\n§7" + String.join(", ", content));
+            commandSender.sendMessage(GlobalConstants.PREFIX + "§aVoici la liste des joueurs connectés sur tout le réseau  §e(" + players.size() + ")§a:\n§7" + String.join(", ", content));
             return;
         }
 
